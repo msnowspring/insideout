@@ -178,11 +178,18 @@
 	    //메인 요소 선택
 	    Elements gfound = gdoc.select("ul>li");
 	    
-	    //gfound title
+	    //gfound title ////// title이 비어있는건 어떻게 처리 할건지ㅠㅠ...
+	    String gtitle = gfound.select("p.s_list_stit").html();
 	    String[] gtitles = gfound.select("p.s_list_stit").html().split("\n");
 	    for(int t=0; t<gtitles.length; t++) {
-	    	titles.add(gtitles[t]);
+	    	if(gtitles[t] == ""){
+	    		titles.add(" ");
+	    	}else{
+	    		titles.add(gtitles[t]);
+	    	}
+	    	
 	    }
+	    
 	    //gfound url
 		String[] gurls = gfound.select("span.s_list_btn").html().split("\n");
 		for(int u=0; u<gurls.length; u++) {
@@ -201,6 +208,8 @@
 	    
 	}
 	
+	//제목이 아예 없어서 하나씩 땡겨지던거 빈칸 추가해서 해결
+	titles.add(9, " ");
 	
 	//weca 코드
 	String caurl = "http://www.weca.or.kr/donation/campaign.asp";
@@ -240,10 +249,10 @@
 	String[] caurls = weca.html().split("\n");
 	for(int u=0; u<caurls.length; u++) {
 		if(u==3) {
-			caurls[u] = caurls[u].substring(9, 27);
+			caurls[u] = "http://www.weca.or.kr" + caurls[u].substring(9, 27);
 			urls.add(caurls[u]);
 		}else {
-			caurls[u] = caurls[u].substring(9, 53);
+			caurls[u] = "http://www.weca.or.kr" + caurls[u].substring(9, 53);
 			urls.add(caurls[u]);
 		}
 	}
@@ -251,7 +260,7 @@
 	
 	
 	
-	//concern 코드
+		//concern 코드
 		String courl = "https://www.concern.or.kr/load.asp?subPage=310#";
 		String coselector = "div.bbs_thumb_list>ul";
 	    Document codoc = null;
@@ -272,7 +281,7 @@
 	    	int idx = cotitles[t].indexOf(']');
 	    	//쪼갠거에서 뒤에꺼 앞에서 2번째부터 가져옴
 	    	cotitles[t] = cotitles[t].substring(idx+2);
-	    	System.out.println(cotitles[t]);
+	    	titles.add(cotitles[t]);
 	    }
 	    
 	    //concern img
@@ -280,7 +289,7 @@
 		String[] coimgs = concern.select("li>a").html().split("\n");
 		for(int i=0; i<coimgs.length; i++) {
 			coimgs[i] = "https://www.concern.or.kr" + coimgs[i].substring(10, 63);
-			System.out.println(coimgs[i]);
+			imgs.add(coimgs[i]);
 		}
 	    
 	    //concern url
@@ -293,17 +302,18 @@
 				//replace로 "랑 ' 제거
 				courls[u] = courls[u].replace('"',' ');
 				courls[u] = courls[u].replace("'"," ");
-				System.out.println(courls[u]);
+				urls.add(courls[u]);
 			}else {
 				courls[u] = "https://www.concern.or.kr" + courls[u].substring(10, 91);
-				System.out.println(courls[u]);
+				urls.add(courls[u]);
 			}
 			
 		}
 		
 		
 	
-	/* //withgo 코드
+	//withgo 코드
+	
 	for(int wg=1; wg<3; wg++) {
 		String wurl = "http://www.withgo.or.kr/campaign/story_cam.asp?strArea=B&intCate=&intStat=1&intPage="+wg+"#";
 		String wselector = "div.camp_list>ul.clearfix";
@@ -330,7 +340,7 @@
 			wimgs[i] = "http://www.withgo.or.kr" + wimgs[i].substring(10,54);
 			int idx = wimgs[i].indexOf('"');
 			wimgs[i] = wimgs[i].substring(0,idx);
-			titles.add(wimgs[i]);
+			imgs.add(wimgs[i]);
 		}
 			
 		    
@@ -341,11 +351,12 @@
 		withgo.select("li>a>div.thum").remove();
 		String[] wurls = withgo.select("li").html().split("\n");
 		for(int u=0; u<wtitles.length; u++) {
-			wurls[u] = "http://www.withgo.or.kr" + wurls[u].substring(10, 98).replace('"',' ');
-			titles.add(wurls[u]);
+			wurls[u] = "http://www.withgo.or.kr/campaign" + wurls[u].substring(10, 98).replace('"',' ');
+			urls.add(wurls[u]);
 		}
 			
-	} */
+	}
+	
 	
 	int count = titles.size();
 %>
@@ -414,22 +425,100 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
+		
+		<!-- card4 -->
+		<div class="col-3">
+			<div class="card"> 
+				<img src="imgs/cimg4.jpg" class="card_img">
+				<div class="card_content">
+					<div class="info_bx">
+						<strong class="card_title"> 독거어르신들에게 특별한 하루를 선물하세요!! </strong>
+						<div class="s_bx">
+							<span class="category"> 용산재가노인지원센터 </span> 
+						</div>
+						<div class="ss_bx">
+							<a href="card4.jsp"><button id="btn" >자세히 보기</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div class="row">	
+		<!-- card5 -->
+		<div class="col-3">
+			<div class="card"> 
+				<img src="imgs/cimg5.jpg" class="card_img">
+				<div class="card_content">
+					<div class="info_bx">
+						<strong class="card_title"> 내복 한 벌, 어르신에겐 3도씨의 따뜻함이 필요합니다. </strong>
+						<div class="s_bx">
+							<span class="category"> 하당노인복지관 </span> 
+						</div>
+						<div class="ss_bx">
+							<a href="card5.jsp"><button id="btn" >자세히 보기</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- card6 -->
+		<div class="col-3">
+			<div class="card"> 
+				<img src="imgs/cimg6.jpg" class="card_img">
+				<div class="card_content">
+					<div class="info_bx">
+						<strong class="card_title"> 바다에 사는 로또라구요? 바다에 사는 보호종,고래예요. </strong>
+						<div class="s_bx">
+							<span class="category"> 환경운동연합 </span> 
+						</div>
+						<div class="ss_bx">
+							<a href="card6.jsp"><button id="btn" >자세히 보기</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- card7 -->
+		<div class="col-3">
+			<div class="card"> 
+				<img src="imgs/cimg7.jpg" class="card_img">
+				<div class="card_content">
+					<div class="info_bx">
+						<strong class="card_title"> 리어카가 가벼울수록 마음은 무겁습니다. </strong>
+						<div class="s_bx">
+							<span class="category"> 강동구립해공노인복지관 </span> 
+						</div>
+						<div class="ss_bx">
+							<a href="card7.jsp"><button id="btn" >자세히 보기</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+				
 	
 	<!-- 크롤링 카드들 -->
 	<%
 		for(int d=0; d<titles.size(); d++){
+			
 	%>
-		<%
-			//안됨
-			//String com = "";
-			//if(urls.get(d).contains("gfound")){
-			//	com = "지파운데이션";
-			//}else if(urls.get(d).contains("weca")){
-			//	com = "세계교육문화원 WECA";	
-			//}else if(urls.get(d).contains("concern")){
-			//	com = "컨선월드와이드";
-			//}
+		<% 
+			String com = "";
+			if(urls.get(d).contains("gfound")){
+				com = "지파운데이션";
+			}else if(urls.get(d).contains("weca")){
+				com = "세계교육문화원 WECA";	
+			}else if(urls.get(d).contains("concern")){
+				com = "컨선월드와이드";
+			}else if(urls.get(d).contains("withgo")){
+				com = "함께하는 사랑밭";
+			}
 		%>
 		<div class="col-3">
 		<div class="card"> <img src="<%= imgs.get(d) %>" class="card_img">
@@ -437,6 +526,7 @@
 				<div class="info_bx">
 					<strong class="card_title"><%= titles.get(d) %></strong>
 					<div class="s_bx">
+						<span class="category"> <%= com %> </span> 
 					</div>
 					<div class="ss_bx">
 						<a href="<%= urls.get(d) %>"><button id="btn" >자세히 보기</button></a>

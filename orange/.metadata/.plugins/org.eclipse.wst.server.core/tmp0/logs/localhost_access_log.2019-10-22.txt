@@ -1,7 +1,0 @@
-127.0.0.1 - - [22/Oct/2019:17:29:27 +0900] "GET / HTTP/1.1" 404 1036
-0:0:0:0:0:0:0:1 - - [22/Oct/2019:17:29:36 +0900] "GET /Sky/fweb/donation22.jsp HTTP/1.1" 500 43567
-0:0:0:0:0:0:0:1 - - [22/Oct/2019:17:29:36 +0900] "GET /Sky/fweb/imgs/logo.jpg HTTP/1.1" 404 1058
-0:0:0:0:0:0:0:1 - - [22/Oct/2019:17:29:36 +0900] "GET /Sky/fweb/imgs/search.png HTTP/1.1" 304 -
-0:0:0:0:0:0:0:1 - - [22/Oct/2019:17:29:36 +0900] "GET /Sky/fweb/imgs/cimg1.png HTTP/1.1" 304 -
-0:0:0:0:0:0:0:1 - - [22/Oct/2019:17:29:36 +0900] "GET /Sky/fweb/imgs/cimg2.jpg HTTP/1.1" 304 -
-0:0:0:0:0:0:0:1 - - [22/Oct/2019:17:29:36 +0900] "GET /Sky/fweb/imgs/cimg3.jpg HTTP/1.1" 304 -
