@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 꿀비 </title>
+<link rel="stylesheet" href="Resources/css/bootstrap.min.css">
+<link rel="shortcut icon" href="imgs/favicon.ico" >
+<link rel="icon" href="favicon.ico" >
+</head>
+<body>
+<script src="Resources/js/bootstrap.min.js"></script>
+<script src="Resources/jquery/jquery-3.4.1.min.js"></script>
+<div class="container">
+	
+	
+	<!-- Top 불러옴 -->
+	<%@ include file="Top.jsp" %>
+	
+	<!-- Center 들어갈 것들 -->
+	<div class="center">
+		<!-- card1 상세페이지 -->
+		<div class="row">
+			<div class="col">
+				<div class="collect_content">
+					<h3 class="tit"> 생리대가 필요한 아이들 </h3>
+					<h5> 모금함 소개 </h2>
+					<div class="tab_cont">
+						<div class="intro_lst_editor_base">
+							<img id="fullImage" src="imgs/cimg1.png" width="628">
+						</div>
+					</div>
+				</div>
+				<div class="collect_side">
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<%@ include file="Bottom.jsp" %>
+	
+</div>
+
+</body>
+</html>

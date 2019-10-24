@@ -1,0 +1,58 @@
+package webCrawling;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+public class gfoundation {
+	public static void main(String[] args) {
+		for(int n=1; n<6; n++) {
+			String url = "https://www.gfound.org/bbs/board.php?bo_table=support_1&page="+n;
+			String selector = "div.bo_list";
+		    Document doc = null;
+		    
+		    try {
+		        doc = Jsoup.connect(url).get(); // 1. get방식의 URL에 연결해서 가져온 값을 doc에 담는다.
+		    } catch (IOException e) {
+		        System.out.println(e.getMessage());
+		    }
+		    
+		    
+		    ////
+		    Elements gfound = doc.select("ul>li");
+		    
+		    //gfound title
+		    String gtitle = gfound.select("p.s_list_stit").html();
+		    System.out.println(gtitle);
+		    
+		    //gfound url
+			//Elements gu = doc.select("div.s_list_phot>a");
+			String[] url = gfound.select("div.s_list_phot").html().split("\n");
+			
+			
+			//String gurl = gu.attr("href");
+			
+			System.out.println(gurl);
+//			for(int g=0; g<gu.size(); g++) {
+//				Element guu = gu.get(g);
+//				String gurl = gu.attr("href");
+//				String[] gurls = ;
+//				System.out.println(gurl);
+//			}
+			
+			
+		    
+//		    String gimg = gfound.select("div.s_list_phot>a").html();
+		    
+		    
+		    
+		    
+		
+		}
+		
+	}
+}

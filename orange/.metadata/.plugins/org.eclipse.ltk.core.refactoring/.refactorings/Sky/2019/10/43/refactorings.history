@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;card4.jsp&apos; to &apos;fweb&apos;" description="Move &apos;card4.jsp&apos; to &apos;fweb&apos;" destination="WebContent/fweb" element1="WebContent/fweb/Resources/card4.jsp" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1571923833084" updateReferences="true"/>
+</session>

@@ -1,0 +1,55 @@
+package webCrawling;
+
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+public class weca {
+	public static void main(String[] args) {
+			String caurl = "http://www.weca.or.kr/donation/campaign.asp";
+			String selector = "div.services_wrapper>div.campaign_box";
+		    Document doc = null;
+		    
+		    try {
+		        doc = Jsoup.connect(caurl).get(); // 1. get방식의 URL에 연결해서 가져온 값을 doc에 담는다.
+		    } catch (IOException e) {
+		        System.out.println(e.getMessage());
+		    }
+		    
+		    //메인 요소 선택
+		    Elements weca = doc.select(selector);
+		    
+		    //weca title
+		    String[] titles = weca.select("a>div.img_container>div.campaign_tex>dl>dt.tit").html().split("\n");
+		    for(int t=0; t<titles.length; t++) {
+		    	System.out.println(titles[t]);
+		    }
+		    
+		    //weca img
+		    weca.select("a>div.img_container>div.campaign_img").remove();
+		    weca.select("a>div.img_container>div.campaign_tex").remove();
+			String[] imgs = weca.select("a>div.img_container").html().split("\n");
+			for(int i=0; i<imgs.length; i++) {
+				imgs[i] = "http://www.weca.or.kr" + imgs[i].substring(10, 35);
+				
+				System.out.println(imgs[i]);
+			}
+		    
+//		    //weca url
+//			String[] urls = weca.select("span.s_list_btn").html().split("\n");
+//			for(int g=0; g<urls.length; g++) {
+//				urls[g] = urls[g].substring(9, 92);
+//				System.out.println(urls[g]);
+//			}
+			
+			
+		    
+			
+//			String gimg = gfound.select("div.s_list_phot>a").html();
+//			System.out.println(gimg);
+		    
+	}
+
+}
